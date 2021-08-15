@@ -62,13 +62,12 @@ const getSalary = ( id ) => {
 //     .then( salary => console.log( salary ) )
 //     .catch( err => console.log(err) );
 
-getEmployee( id )
-    .then( empleado => {
-        getSalary( id )
-            .then( salary => {
-                console.log(`El empleado ${empleado.name} tiene un salario de ${salary.salary}`);
+let name;
 
-            } )
-            .catch( err => console.log(err) );
+getEmployee( id )
+    .then( employee => {
+        name = employee.name;
+        return getSalary( id );
     })
-    .catch( err => console.log(err) );
+    .then( salary => console.log(`Empleado ${name} tiene ${salary.salary}`) )
+    .catch( err => console.log(err) )
