@@ -1,19 +1,19 @@
 // Requerir paquetes
+const colors = require('colors');
 const { createFile } = require('./helpers/multiply.js');
-const yargs = require('yargs').argv;
+const yargs = require('./config/yargs.js')
 
 console.clear();
 
-console.log( process.argv );
-console.log( yargs );
-
-console.log( yargs.base );
+const { base, list, hasta } = yargs;
 
 // NO HACER
 // const [ , , totalString = 'base=5'] = process.argv;
 // const [ , baseString = 5] = totalString.split('=');
 // const base = parseInt(baseString);
 
-// createFile( base )
-//     .then( output => console.log(output) )
-//     .catch( err => console.log(err) )
+console.log(base, list, hasta);
+
+createFile( base, list, hasta )
+    .then( output => console.log(output.inverse) )
+    .catch( err => console.log(err.red) )
