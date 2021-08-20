@@ -25,6 +25,14 @@ class Tasks {
 
     }
 
+    loadTasksFromArray( tasks = [] ) {
+
+        tasks.forEach( task => {
+            this._list[task.id] = task;
+        })
+
+    }
+
 }
 
 module.exports = Tasks;

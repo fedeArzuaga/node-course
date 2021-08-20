@@ -11,10 +11,8 @@ const main = async () => {
     const tasksDB = readDB();
 
     if ( tasksDB ) {
-        // Establecer las tareas
+        tasks.loadTasksFromArray(tasksDB);
     }
-
-    await pause();
 
     do {
 
