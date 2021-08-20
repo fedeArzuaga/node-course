@@ -33,7 +33,7 @@ const main = async () => {
 
         }
 
-        // saveDB( tasks.listArr );
+        saveDB( tasks.listArr );
 
         await pause();
 
