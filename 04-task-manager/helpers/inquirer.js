@@ -89,8 +89,66 @@ const readInput = async ( message ) => {
 
 }
 
+const removeTasks = async (tasks = [], i) => {
+
+    let counter = 1;
+
+    const choices = tasks.map( task => {
+
+        let myCounter = `${counter}.`.green;
+        counter++;
+
+        return {
+            value: task.id,
+            name: `${myCounter} ${task.description}`
+        }
+    })
+
+    choices.unshift({
+        value: '0',
+        name: '0.'.green + ' Cancelar'.red
+    })
+
+    const questions = [
+        {
+            type: 'list',
+            name: 'id',
+            message: 'Borrar',
+            choices
+        }
+    ]
+
+    const { id } = await inquirer.prompt(questions);
+
+    return id;
+
+    // {
+    //     value: '0',
+    //     name: `${'0.'.green} Exit`
+    // }
+
+}
+
+const confirm = async (message) => {
+
+    const question = [
+        {
+            type: 'confirm',
+            name: 'ok',
+            message
+        }
+    ];
+
+    const { ok } = await inquirer.prompt(question);
+
+    return ok;
+
+}
+
 module.exports = {
     inquirerMenu,
     pause,
-    readInput
+    readInput,
+    removeTasks,
+    confirm
 }
