@@ -31,6 +31,14 @@ const main = async () => {
                 tasks.completedList();
             break; 
 
+            case '3': // Display only completed tasks
+                tasks.listOnlyCompletedOrPendingTasks(true);
+            break;
+            
+            case '4': // Display only pending tasks
+                tasks.listOnlyCompletedOrPendingTasks(false);
+            break; 
+
         }
 
         saveDB( tasks.listArr );

@@ -57,6 +57,42 @@ class Tasks {
 
     }
 
+    listOnlyCompletedOrPendingTasks( completed = true ) {
+        
+        let counter = 1;
+
+        console.log('\n');
+
+        if ( completed ) {
+
+            const completedTasks = this.listArr.filter( task => task.completedAt !== null );
+
+            completedTasks.forEach(  task => {
+
+                let myCounter = counter.toString() + '.';
+
+                console.log(`${myCounter.green} ${task.description} :: ${'Completed'.green}` );
+                counter++;
+
+            });
+
+        } else {
+
+            const pendingTasks = this.listArr.filter( task => task.completedAt === null );
+
+            pendingTasks.forEach(  task => {
+
+                let myCounter = counter.toString() + '.';
+
+                console.log(`${myCounter.red} ${task.description} :: ${'Pending'.red}` );
+                counter++;
+
+            });
+
+        }
+
+    }
+
 }
 
 module.exports = Tasks;
