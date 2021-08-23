@@ -28,7 +28,7 @@ const main = async () => {
             break;
 
             case '2': // Display tasks on the console
-                console.log(tasks.listArr);
+                tasks.completedList();
             break; 
 
         }

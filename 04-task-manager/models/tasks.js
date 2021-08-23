@@ -33,6 +33,30 @@ class Tasks {
 
     }
 
+    completedList() {
+
+        const list = this.listArr;
+        let counter = 1;
+
+        console.log('\n');
+
+        list.forEach( task => {
+
+            let taskStatus = ( task.completedAt !== null ) ? 'Completed' : 'In progress';
+            let myCounter = counter.toString() + '.';
+
+            if ( task.completedAt === null ) {
+                console.log(`${myCounter.red} ${task.description} :: ${taskStatus.red}` );
+            } else {
+                console.log(`${myCounter.green} ${task.description} :: ${taskStatus.green}` );
+            }
+
+            counter++;
+
+        });
+
+    }
+
 }
 
 module.exports = Tasks;
