@@ -103,6 +103,30 @@ class Tasks {
 
     }
 
+    toggleCompleted( ids = [] ) {
+
+        ids.forEach( id => {
+            
+            const task = this._list[id];
+
+            if ( !task.completedAt ) {
+                task.completedAt = new Date().toISOString();
+            }
+
+        })
+
+        this.listArr.forEach( task => {
+
+            if ( !ids.includes(task.id) ) {
+
+                this._list[task.id].completedAt = null;
+                 
+            }
+
+        })
+
+    }
+
 }
 
 module.exports = Tasks;
