@@ -23,18 +23,23 @@ const main = async () => {
                 // Select the correct place
                 const selectedID = await listPlaces(places);
                 const selectedPlace = places.find( place => place.id === selectedID );
-                const { name, lng, lat } = selectedPlace;
+                const { name: cityName, lng, lat } = selectedPlace;
 
                 // Weather data
+                const weatherData = await search.weatherOfPlace(lat, lng);
+
+                const { temp, feels_like, temp_min, temp_max, description } = weatherData;
 
                 // Show results 
-                console.log('\nCity Information\n'.blue);
-                console.log('City: '.blue, name);
-                console.log('Lat: '.blue, lat);
-                console.log('Lng: '.blue, lng);
-                console.log('Temperature: '.blue, );
-                console.log('Max: '.blue, );
-                console.log('Min: '.blue, );
+                console.log('\nCity Information\n'.green);
+                console.log('City: '.green, cityName);
+                console.log('Lat: '.green, lat);
+                console.log('Lng: '.green, lng);
+                console.log('Weather Description: ', description);
+                console.log('Temperature: '.green, temp);
+                console.log('It feels like: '.green, feels_like);
+                console.log('Max: '.green, temp_max);
+                console.log('Min: '.green, temp_min);
                 
             break;
 

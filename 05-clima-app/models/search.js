@@ -2,8 +2,9 @@ const axios = require('axios');
 
 class Search {
 
-    constructor() {
-
+    constructor(lat, long) {
+        this.lat = lat
+        this.long = long
     }
 
     get paramsMapbox() {
@@ -12,6 +13,23 @@ class Search {
             'language': 'es',
             'access_token': process.env.MAPBOX_KEY || ''
         }
+    }
+
+    get paramsOpenWeather() {
+        return {
+            'lat': this.lat,
+            'lon': this.long,
+            'appid': process.env.OPENWEATHER_KEY || '',
+            'units': 'metric'
+        }
+    }
+
+    set newLat( value ) {
+        return this.lat = value;
+    }
+
+    set newLong( value ) {
+        return this.long = value;
     }
 
     async city( place = '' ) {
@@ -37,6 +55,42 @@ class Search {
 
             return [];
 
+        }
+
+    }
+
+    async weatherOfPlace( lat, long ) {
+
+        try {
+
+            this.newLat = lat;
+            this.newLong = long;
+
+            // axios instance
+            const instance = axios.create({
+                baseURL: `https://api.openweathermap.org/data/2.5/weather`,
+                params: this.paramsOpenWeather
+            });
+
+            // HTTP Request
+            const response = await instance.get();
+
+            // Weahter description
+            const { description } = response.data.weather[0];
+
+            // Weather main data
+            const { temp, feels_like, temp_min, temp_max } = response.data.main;
+            
+            return {
+                temp, 
+                feels_like, 
+                temp_min, 
+                temp_max, 
+                description
+            }
+
+        } catch ( err ) {
+            console.log( err );
         }
 
     }
