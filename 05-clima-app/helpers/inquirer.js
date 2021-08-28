@@ -73,18 +73,18 @@ const readInput = async ( message ) => {
 
 }
 
-const removeTasks = async (tasks = [], i) => {
+const listPlaces = async (places = [], i) => {
 
     let counter = 1;
 
-    const choices = tasks.map( task => {
+    const choices = places.map( place => {
 
         let myCounter = `${counter}.`.green;
         counter++;
 
         return {
-            value: task.id,
-            name: `${myCounter} ${task.description}`
+            value: place.id,
+            name: `${myCounter} ${place.name}`
         }
     })
 
@@ -97,7 +97,7 @@ const removeTasks = async (tasks = [], i) => {
         {
             type: 'list',
             name: 'id',
-            message: 'Borrar',
+            message: 'Select a place',
             choices
         }
     ]
@@ -169,7 +169,7 @@ module.exports = {
     inquirerMenu,
     pause,
     readInput,
-    removeTasks,
+    listPlaces,
     confirm,
     showChecklist
 }
