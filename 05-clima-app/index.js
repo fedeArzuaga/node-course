@@ -35,7 +35,7 @@ const main = async () => {
                 console.log('City: '.green, cityName);
                 console.log('Lat: '.green, lat);
                 console.log('Lng: '.green, lng);
-                console.log('Weather Description: ', description);
+                console.log('Weather Description: '.green, description);
                 console.log('Temperature: '.green, temp);
                 console.log('It feels like: '.green, feels_like);
                 console.log('Max: '.green, temp_max);
