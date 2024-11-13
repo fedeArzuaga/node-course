@@ -1,3 +1,5 @@
+.DS_Store
+
 node_modules/
 output/
 ./04-task-manager/db/data.json
